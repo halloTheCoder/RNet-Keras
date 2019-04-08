@@ -1,6 +1,6 @@
 # R-NET implementation in Keras
 
-This repository is an attempt to reproduce the results presented in the [technical report by Microsoft Research Asia](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf). The report describes a complex neural network called **R-NET**
+This repository is an attempt to reproduce the results presented in the [technical report by Microsoft Research Asia](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf). The report describes a complex neural network called **R-NET**.
 
 The best performance I got so far was 
 - EM=57.52% and F1=67.42% on the dev set. 

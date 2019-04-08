@@ -1,7 +1,3 @@
-# from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import division
-
 from keras import backend as K
 from keras.layers import Layer
 from keras.layers.wrappers import TimeDistributed
