@@ -18,9 +18,7 @@ python parse_data.py data/dev-v1.1.json --outfile data/dev_parsed.json
 
 2. Preprocess the data
 ```sh
-python preprocessing.py data/train_parsed.json --outfile data/train_data_str.pkl --include_str
-python preprocessing.py data/valid_parsed.json --outfile data/valid_data_str.pkl --include_str
-python preprocessing.py data/dev_parsed.json --outfile data/dev_data_str.pkl --include_str
+python preprocessing.py data/train_parsed.json data/valid_parsed.json data/dev_parsed.json --outfile data/train_data_str.pkl data/valid_data_str.pkl data/dev_data_str.pkl --include_str
 ```
 
 3. Train the model

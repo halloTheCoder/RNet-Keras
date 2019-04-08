@@ -79,24 +79,17 @@ if __name__ == '__main__':
     parser.add_argument('--word2vec_path', type=str,
                         default='data/word2vec_from_glove_300.vec',
                         help='Word2Vec vectors file path')
-    parser.add_argument('--outfile', type=str, default='data/tmp.pkl',
+    parser.add_argument('--outfile', type=str, nargs='+', default='data/tmp.pkl',
                         help='Desired path to output pickle')
     parser.add_argument('--include_str', action='store_true',
                         help='Include strings')
-    parser.add_argument('data', type=str, help='Data json')
+    parser.add_argument('data', type=str, nargs='+', help='Data json')
     args = parser.parse_args()
-
-    if not args.outfile.endswith('.pkl'):
-        args.outfile += '.pkl'
-
-    print('Reading SQuAD data... ', end='')
-    with open(args.data) as fd:
-        samples = json.load(fd)
-    print('Done!')
 
     tokenizer = TreebankWordTokenizer()
     tokenizer_func = word_tokenizer()
     
+    print('Loading word2vec ...')
     word_vector = word2vec(args.word2vec_path)
 
     def parse_sample(context, question, answer_start, answer_end, **kwargs):
@@ -122,7 +115,7 @@ if __name__ == '__main__':
 
         if args.include_str:
             context_str = [np.fromstring(token, dtype=np.uint8).astype(np.int32)
-                           for token in tokens]
+                        for token in tokens]
             context_str = pad_sequences(context_str, maxlen=25)
             inputs.append(context_str)
 
@@ -141,19 +134,37 @@ if __name__ == '__main__':
 
         return [inputs, targets]
 
-    print('Parsing samples... ', end='')
-    samples = [parse_sample(**sample) for sample in tqdm(samples)]
-    samples = [sample for sample in samples if sample is not None]
-    print('Done!')
+    if not isinstance(args.data, (list, tuple)):
+        args.data = list(args.data)
+        args.outfile = list(args.outfile)
 
-    # Transpose
-    def transpose(x):
-        return list(map(list, zip(*x)))
+    assert len(args.data) == len(args.outfile)
 
-    data = [transpose(input) for input in transpose(samples)]
+    for i in range(len(args.data)):
+        if not args.outfile[i].endswith('.pkl'):
+            args.outfile += '.pkl'
+
+        # print(args.data[i], args.outfile[i])
+        # continue
+
+        print(f'Reading SQuAD data {args.data[i]} ... ', end='')
+        with open(args.data[i]) as fd:
+            samples = json.load(fd)
+        print('Done!')
+
+        print('Parsing samples... ', end='')
+        samples = [parse_sample(**sample) for sample in tqdm(samples)]
+        samples = [sample for sample in samples if sample is not None]
+        print('Done!')
+
+        # Transpose
+        def transpose(x):
+            return list(map(list, zip(*x)))
+
+        data = [transpose(input) for input in transpose(samples)]
 
 
-    print('Writing to file {}... '.format(args.outfile), end='')
-    with open(args.outfile, 'wb') as fd:
-        pickle.dump(data, fd, protocol=pickle.HIGHEST_PROTOCOL)
-    print('Done!')
+        print('Writing to file {}... '.format(args.outfile[i]), end='')
+        with open(args.outfile[i], 'wb') as fd:
+            pickle.dump(data, fd, protocol=pickle.HIGHEST_PROTOCOL)
+        print('Done!')
