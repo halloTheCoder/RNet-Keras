@@ -33,4 +33,4 @@ python train.py --hdim 45 --batch_size 50 --nb_epochs 50 --optimizer adadelta --
 python predict.py --batch_size 100 --dev_data data/dev_data_str.pkl models/31-t3.05458271443-v3.27696280528.model prediction.json
 ```
 
-Our best model can be downloaded from : 
+Best model can be downloaded from : 

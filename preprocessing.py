@@ -8,9 +8,6 @@ from tqdm import tqdm
 
 import numpy as np
 
-from gensim.models import KeyedVectors
-from gensim.scripts.glove2word2vec import glove2word2vec
-
 from keras.preprocessing.sequence import pad_sequences
 from keras.utils.data_utils import get_file
 
@@ -46,7 +43,7 @@ def word_tokenizer():
     """
     def tokenize_context(context):
         tokens = tokenizer.tokenize(context)
-        char_offsets = tokenizer.span_tokenize(context)
+        char_offsets = list(tokenizer.span_tokenize(context))
         return tokens, char_offsets
 
     return tokenize_context
@@ -55,6 +52,8 @@ def word2vec(word2vec_path):
     """
     Loads 
     """
+    from gensim.models import KeyedVectors
+    from gensim.scripts.glove2word2vec import glove2word2vec
     # Download word2vec data if it's not present yet
     if not os.path.exists(word2vec_path):
         glove_file_path = get_glove_file_path()
@@ -96,7 +95,7 @@ if __name__ == '__main__':
     print('Done!')
 
     tokenizer = TreebankWordTokenizer()
-    tokenize = word_tokenizer()
+    tokenizer_func = word_tokenizer()
     
     word_vector = word2vec(args.word2vec_path)
 
@@ -104,7 +103,7 @@ if __name__ == '__main__':
         inputs = []
         targets = []
 
-        tokens, char_offsets = tokenize(context)
+        tokens, char_offsets = tokenizer_func(context)
         try:
             answer_start = [s <= answer_start < e
                             for s, e in char_offsets].index(True)
@@ -127,7 +126,7 @@ if __name__ == '__main__':
             context_str = pad_sequences(context_str, maxlen=25)
             inputs.append(context_str)
 
-        tokens, char_offsets = tokenize(question)
+        tokens, char_offsets = tokenizer_func(question)
         tokens = [unidecode(token) for token in tokens]
 
         question_vecs = [word_vector(token) for token in tokens]
