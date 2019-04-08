@@ -6,12 +6,7 @@ The best performance I got so far was
 - EM=57.52% and F1=67.42% on the dev set. 
 
 ## Requirements
-`
-keras==2.0.6
-tensorflow==1.13.1
-gensim==3.7.1
-nltk==3.4
-`
+[requirements.txt](https://github.com/halloTheCoder/RNet-Keras/tree/master/requirements.txt)
 
 ## Instructions (make sure you are running Keras version 2.0.6)
 
@@ -38,4 +33,4 @@ python train.py --hdim 45 --batch_size 50 --nb_epochs 50 --optimizer adadelta --
 python predict.py --batch_size 100 --dev_data data/dev_data_str.pkl models/31-t3.05458271443-v3.27696280528.model prediction.json
 ```
 
-Our best model can be downloaded from Release v0.1: https://github.com/YerevaNN/R-NET-in-Keras/releases/download/v0.1/31-t3.05458271443-v3.27696280528.model
+Our best model can be downloaded from : 
