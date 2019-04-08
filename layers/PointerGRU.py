@@ -3,7 +3,7 @@ from keras.layers import Layer
 from keras.layers.wrappers import TimeDistributed
 
 from WrappedGRU import WrappedGRU
-from helpers import compute_mask, softmax
+from helpers import softmax
 
 class PointerGRU(WrappedGRU):
 
@@ -49,6 +49,15 @@ class PointerGRU(WrappedGRU):
         return a_t, [ha_t]
 
     def compute_output_shape(self, input_shape):
+        """Computes the output shape of the layer.
+        # Arguments
+            input_shape: Shape tuple (tuple of integers)
+                or list of shape tuples (one per output tensor of the layer).
+                Shape tuples can include None for free dimensions,
+                instead of an integer.
+        # Returns
+            An output shape tuple i.e. input_shape dim reduced along axis.
+        """
         assert(isinstance(input_shape, list))
 
         nb_inputs = len(input_shape)
@@ -66,4 +75,12 @@ class PointerGRU(WrappedGRU):
             return (B, P)
 
     def compute_mask(self, inputs, mask=None):
-        return None # TODO
+        """Computes an output mask tensor.
+        # Arguments
+            inputs: Tensor or list of tensors.
+            mask: Tensor or list of tensors.
+        # Returns
+            None or a tensor (or list of tensors,
+            one per output tensor of the layer).
+        """
+        return None 

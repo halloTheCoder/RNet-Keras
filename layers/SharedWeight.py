@@ -54,6 +54,17 @@ class SharedWeightLayer(InputLayer):
             output_shapes=[self.size])
         
     def get_config(self):
+        """Returns the config of the layer.
+        A layer config is a Python dictionary (serializable)
+        containing the configuration of a layer.
+        The same layer can be reinstantiated later
+        (without its trained weights) from this configuration.
+        The config of a layer does not include connectivity
+        information, nor the layer class name. These are handled
+        by `Network` (one layer of abstraction above).
+        # Returns
+            Python dictionary.
+        """
         config = {
             'size': self.size,
             'initializer': initializers.serialize(self.initializer),

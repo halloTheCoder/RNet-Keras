@@ -2,7 +2,7 @@ from keras import backend as K
 from keras.layers import Layer
 from keras.layers.wrappers import TimeDistributed
 
-from helpers import compute_mask, softmax
+from helpers import softmax
 
 class QuestionPooling(Layer):
 
@@ -26,6 +26,13 @@ class QuestionPooling(Layer):
         H = H_ // 2
 
     def call(self, inputs, mask=None):
+        """This is where the layer's logic lives.
+        # Arguments
+            inputs: Input tensor, or list/tuple of input tensors.
+            **kwargs: Additional keyword arguments.
+        # Returns
+            A tensor or list/tuple of tensors.
+        """
         assert(isinstance(inputs, list) and len(inputs) == 5)
         uQ, WQ_u, WQ_v, v, VQ_r = inputs
         uQ_mask = mask[0] if mask is not None else None

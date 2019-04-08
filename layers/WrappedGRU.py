@@ -15,6 +15,13 @@ class WrappedGRU(GRU):
 
 
     def call(self, inputs, mask=None, training=None, initial_state=None):
+        """This is where the layer's logic lives.
+        # Arguments
+            inputs: Input tensor, or list/tuple of input tensors.
+            **kwargs: Additional keyword arguments.
+        # Returns
+            A tensor or list/tuple of tensors.
+        """
         if self.initial_state_provided:
             initial_state = inputs[-1:]
             inputs = inputs[:-1]
@@ -51,6 +58,17 @@ class WrappedGRU(GRU):
         return constants
 
     def get_config(self):
+        """Returns the config of the layer.
+        A layer config is a Python dictionary (serializable)
+        containing the configuration of a layer.
+        The same layer can be reinstantiated later
+        (without its trained weights) from this configuration.
+        The config of a layer does not include connectivity
+        information, nor the layer class name. These are handled
+        by `Network` (one layer of abstraction above).
+        # Returns
+            Python dictionary.
+        """
         config = {'initial_state_provided': self.initial_state_provided}
         base_config = super(WrappedGRU, self).get_config()
         return dict(list(base_config.items()) + list(config.items()))

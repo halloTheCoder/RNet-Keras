@@ -1,7 +1,7 @@
 from keras import backend as K
 
 from WrappedGRU import WrappedGRU
-from helpers import compute_mask, softmax
+from helpers import softmax
 
 class SelfAttnGRU(WrappedGRU):
 
