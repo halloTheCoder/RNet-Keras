@@ -2,8 +2,13 @@
 
 This repository is an attempt to reproduce the results presented in the [technical report by Microsoft Research Asia](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf). The report describes a complex neural network called **R-NET**.
 
+Till 2017, R-NET was the best single model(i.e. comparision on stand-alone models, without any ensemble, on the Stanford QA database: SQuAD. 
+SQuAD dataset uses two performance metrics, Exact-Match(EM) and F1-score(F1). Human performance is estimated to be EM = 82.3% and F1 = 91.2% on the test/dev set.
+
 The best performance I got so far was 
-- EM=[]% and F1=[]% on the dev set. (To be updated)
+- EM = 57.52% and F1 = 67.42%. (Chances to be further improved as hyperparameter tuning was not carried out)
+
+**I have attached a [PDF document](https://github.com/halloTheCoder/RNet-Keras/tree/master/doc.pdf) explaining the model architecture and the current limitations**
 
 ## Requirements
 [requirements.txt](https://github.com/halloTheCoder/RNet-Keras/tree/master/requirements.txt)
