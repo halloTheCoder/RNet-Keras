@@ -14,12 +14,9 @@ from layers.PointerGRU import PointerGRU
 from layers.QuestionPooling import QuestionPooling
 from layers.VariationalDropout import VariationalDropout
 from layers.Slice import Slice
-from layers.SharedWeight import SharedWeightLayer
+from layers.SharedWeight import SharedWeight
 
 class RNet(Model):
-    """
-    Class containing the definition of Model responsible for the Question-Answering
-    """
     def __init__(self, inputs=None, outputs=None,
                        N=None, M=None, C=25, unroll=False,
                        hdim=75, word2vec_dim=300,
@@ -95,13 +92,12 @@ class RNet(Model):
                                    unroll=unroll)) (uQ)
         uQ = VariationalDropout(rate=dropout_rate, noise_shape=(None, 1, 2 * H), name='uQ') (uQ)
 
-        vP = Bidirectional(QuestionAttnGRU(units=H,
-                                           return_sequences=True,
-                                           unroll=unroll) ([
-                                               uP, uQ,
-                                               WQ_u, WP_v, WP_u, v, W_g1
-                                           ])
-                                           
+        vP = QuestionAttnGRU(units=H,
+                             return_sequences=True,
+                             unroll=unroll) ([
+                                uP, uQ,
+                                WQ_u, WP_v, WP_u, v, W_g1
+                            ])
         vP = VariationalDropout(rate=dropout_rate, noise_shape=(None, 1, H), name='vP') (vP)
 
         hP = Bidirectional(SelfAttnGRU(units=H,
@@ -142,3 +138,7 @@ class RNet(Model):
         super(RNet, self).__init__(inputs=inputs,
                                    outputs=outputs,
                                    **kwargs)
+
+if __name__=='__main__':
+	model = RNet()
+	print(model.summary())

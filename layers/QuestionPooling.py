@@ -2,7 +2,7 @@ from keras import backend as K
 from keras.layers import Layer
 from keras.layers.wrappers import TimeDistributed
 
-from helpers import softmax
+from .helpers import softmax
 
 class QuestionPooling(Layer):
 

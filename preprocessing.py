@@ -148,7 +148,7 @@ if __name__ == '__main__':
 
     # Transpose
     def transpose(x):
-        return map(list, zip(*x))
+        return list(map(list, zip(*x)))
 
     data = [transpose(input) for input in transpose(samples)]
 

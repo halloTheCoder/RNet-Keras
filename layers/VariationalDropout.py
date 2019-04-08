@@ -1,7 +1,6 @@
 from keras import backend as K
 from keras.engine.topology import Layer
 
-
 class VariationalDropout(Layer):
     """
     Module implementing Variational Dropout [https://arxiv.org/abs/1506.02557],
@@ -28,7 +27,7 @@ class VariationalDropout(Layer):
         """
         if 0. < self.rate < 1.:
             symbolic_shape = K.shape(inputs)
-            noise_shape = [shape if shape > 0 else symbolic_shape[axis]
+            noise_shape = [shape if shape is not None and shape > 0 else symbolic_shape[axis]
                            for axis, shape in enumerate(self.noise_shape)]
             noise_shape = tuple(noise_shape)
 

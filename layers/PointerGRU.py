@@ -2,8 +2,8 @@ from keras import backend as K
 from keras.layers import Layer
 from keras.layers.wrappers import TimeDistributed
 
-from WrappedGRU import WrappedGRU
-from helpers import softmax
+from .WrappedGRU import WrappedGRU
+from .helpers import softmax
 
 class PointerGRU(WrappedGRU):
 
