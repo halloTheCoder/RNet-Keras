@@ -96,7 +96,8 @@ if __name__ == '__main__':
     print('Done!')
 
     tokenizer = TreebankWordTokenizer()
-
+    tokenize = word_tokenizer()
+    
     word_vector = word2vec(args.word2vec_path)
 
     def parse_sample(context, question, answer_start, answer_end, **kwargs):
