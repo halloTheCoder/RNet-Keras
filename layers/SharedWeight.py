@@ -7,6 +7,17 @@ from keras.engine.topology import Node
 from keras.layers import Layer, InputLayer
 
 class SharedWeightLayer(InputLayer):
+    """
+    Module implementing Weight Sharing among layers, to reduce training time and for faster convergence.
+    As, Keras doesn't directly support WeightSharing, but supports Layer Sharing, so use SharedWeightLayer to solve this problem.
+    Takes no input tensor and return Weight tensor.
+    # Arguments
+        size: size/shape of the weight tensor to be shared
+        initializer: initializer used for initializing weights
+        regularizer: regularizer for weight tensor
+        name: str, name for the SharedWeight Layer
+        **kwargs: Additional keyword arguments
+    """
     def __init__(self, 
                  size,
                  initializer='glorot_uniform',
@@ -32,7 +43,6 @@ class SharedWeightLayer(InputLayer):
 
         self.trainable = True
         self.built = True
-        # self.sparse = sparse
 
         input_tensor = self.kernel * 1.0
 

@@ -6,8 +6,17 @@ from .WrappedGRU import WrappedGRU
 from .helpers import softmax
 
 class PointerGRU(WrappedGRU):
-
+    """
+    Class consisting of only two steps, with each step predicting a single dim output tensor.
+    """
     def build(self, input_shape):
+        """Creates the layer weights.
+        Must be implemented on all layers that have weights.
+        # Arguments
+            input_shape: Keras tensor (future input to layer)
+                or list/tuple of Keras tensors to reference
+                for weight shape computations
+        """
         H = self.units // 2
         assert(isinstance(input_shape, list))
 
@@ -28,6 +37,9 @@ class PointerGRU(WrappedGRU):
         self.input_spec = [None] * nb_inputs # TODO TODO TODO
 
     def step(self, inputs, states):
+        """
+        Additional operations to be carried out before passing the input to the GRU cell.
+        """
         # input
         ha_tm1 = states[0] # (B, 2H)
         _ = states[1:3] # ignore internal dropout/masks

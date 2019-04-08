@@ -4,7 +4,13 @@ from keras.layers.wrappers import TimeDistributed
 from keras.layers.recurrent import GRU
 
 class WrappedGRU(GRU):
-
+    """
+    Wrapper class of GRU containing all the operations for GRU class 
+    and additionally allows taking SharedWeight as an input.
+    # Arguments
+        initial_state_provided: Bool, whether initial state is provided
+        **kwargs: Additional keyword arguments
+    """
     def __init__(self, initial_state_provided=False, **kwargs):
         kwargs['implementation'] = kwargs.get('implementation', 2)
         assert(kwargs['implementation'] == 2)
@@ -17,8 +23,8 @@ class WrappedGRU(GRU):
     def call(self, inputs, mask=None, training=None, initial_state=None):
         """This is where the layer's logic lives.
         # Arguments
-            inputs: Input tensor, or list/tuple of input tensors.
-            **kwargs: Additional keyword arguments.
+            inputs: Input tensor, or list/tuple of input tensors
+            **kwargs: Additional keyword arguments
         # Returns
             A tensor or list/tuple of tensors.
         """

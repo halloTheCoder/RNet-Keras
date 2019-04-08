@@ -39,7 +39,7 @@ def word_tokenizer():
     Utility function that returns the function for tokenizing sentence 
     into words and char_offsets of tokens in that sentence.
     # Arguments
-        filename : datafile to be unpickled.
+        filename: datafile to be unpickled.
     """
     def tokenize_context(context):
         tokens = tokenizer.tokenize(context)

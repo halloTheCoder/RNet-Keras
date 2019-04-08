@@ -7,6 +7,7 @@ class Argmax(Layer):
     Module responsible for taking Argmax of output tensors
     # Arguments
         axis : axis along with Argmax is taken
+        **kwargs: Additional keyword arguments
     """
     def __init__(self, axis=-1, **kwargs):
         super(Argmax, self).__init__(**kwargs)
@@ -31,9 +32,9 @@ class Argmax(Layer):
         """Computes the output shape of the layer.
         # Arguments
             input_shape: Shape tuple (tuple of integers)
-                or list of shape tuples (one per output tensor of the layer).
+                or list of shape tuples (one per output tensor of the layer)
                 Shape tuples can include None for free dimensions,
-                instead of an integer.
+                instead of an integer
         # Returns
             An output shape tuple i.e. input_shape dim reduced along axis.
         """
@@ -44,8 +45,8 @@ class Argmax(Layer):
     def compute_mask(self, x, mask):
         """Computes an output mask tensor.
         # Arguments
-            inputs: Tensor or list of tensors.
-            mask: Tensor or list of tensors.
+            inputs: Tensor or list of tensors
+            mask: Tensor or list of tensors
         # Returns
             None or a tensor (or list of tensors,
             one per output tensor of the layer).

@@ -4,8 +4,19 @@ from .WrappedGRU import WrappedGRU
 from .helpers import softmax
 
 class QuestionAttnGRU(WrappedGRU):
-
+    """
+    Class implementing attention mechanism, to get the relevance/importance of one tensor on other.
+    Used to obtain question-aware representation of the passage, i.e. importance of each word in the
+    question w.r.t passage.
+    """
     def build(self, input_shape):
+        """Creates the layer weights.
+        Must be implemented on all layers that have weights.
+        # Arguments
+            input_shape: Keras tensor (future input to layer)
+                or list/tuple of Keras tensors to reference
+                for weight shape computations
+        """
         H = self.units
         assert(isinstance(input_shape, list))
         
@@ -26,6 +37,9 @@ class QuestionAttnGRU(WrappedGRU):
         self.input_spec = [None] * nb_inputs
 
     def step(self, inputs, states):
+        """
+        Additional operations to be carried out before passing the input to the GRU cell.
+        """
         uP_t = inputs
         vP_tm1 = states[0]
         _ = states[1:3] # ignore internal dropout/masks

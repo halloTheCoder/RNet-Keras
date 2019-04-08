@@ -20,8 +20,8 @@ class VariationalDropout(Layer):
     def call(self, inputs, training=None):
         """This is where the layer's logic lives.
         # Arguments
-            inputs: Input tensor, or list/tuple of input tensors.
-            **kwargs: Additional keyword arguments.
+            inputs: Input tensor, or list/tuple of input tensors
+            **kwargs: Additional keyword arguments
         # Returns
             A tensor or list/tuple of tensors.
         """

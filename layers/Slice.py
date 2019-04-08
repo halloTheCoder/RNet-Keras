@@ -7,8 +7,9 @@ class Slice(Layer):
     Module responsible for slicing and returning the input tensor at given indices.
     It also supports Masking.
     # Arguments
-        indices : indices of the input tensor that needs to be returned
-        axis : axis along which indices are considered
+        indices: indices of the input tensor that needs to be returned
+        axis: axis along which indices are considered
+        **kwargs: Additional keyword arguments
     """
     def __init__(self, indices, axis=1, **kwargs):
         self.supports_masking = True
@@ -33,10 +34,10 @@ class Slice(Layer):
     def call(self, inputs, mask=None):
         """This is where the layer's logic lives.
         # Arguments
-            inputs: Input tensor, or list/tuple of input tensors.
-            **kwargs: Additional keyword arguments.
+            inputs: Input tensor, or list/tuple of input tensors
+            **kwargs: Additional keyword arguments
         # Returns
-            A tensor or list/tuple of tensors.
+            A tensor or list/tuple of tensors
         """
         return inputs[self.slices]
 
@@ -44,9 +45,9 @@ class Slice(Layer):
         """Computes the output shape of the layer.
         # Arguments
             input_shape: Shape tuple (tuple of integers)
-                or list of shape tuples (one per output tensor of the layer).
-                Shape tuples can include None for free dimensions,
-                instead of an integer.
+                or list of shape tuples (one per output tensor of the layer)
+                Shape tuples can include None for free dimensions
+                instead of an integer
         # Returns
             An output shape tuple i.e. input_shape dim reduced along axis.
         """
@@ -65,11 +66,11 @@ class Slice(Layer):
     def compute_mask(self, x, mask=None):
         """Computes an output mask tensor.
         # Arguments
-            inputs: Tensor or list of tensors.
-            mask: Tensor or list of tensors.
+            inputs: Tensor or list of tensors
+            mask: Tensor or list of tensors
         # Returns
             None or a tensor (or list of tensors,
-            one per output tensor of the layer).
+            one per output tensor of the layer)
         """
         if mask is None:
             return mask

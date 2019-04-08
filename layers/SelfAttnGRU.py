@@ -4,8 +4,17 @@ from .WrappedGRU import WrappedGRU
 from .helpers import softmax
 
 class SelfAttnGRU(WrappedGRU):
-
+    """
+    Class implementing self-attention mechanism on the input tensor.
+    """
     def build(self, input_shape):
+        """Creates the layer weights.
+        Must be implemented on all layers that have weights.
+        # Arguments
+            input_shape: Keras tensor (future input to layer)
+                or list/tuple of Keras tensors to reference
+                for weight shape computations
+        """
         H = self.units
         assert(isinstance(input_shape, list))
         
@@ -15,7 +24,6 @@ class SelfAttnGRU(WrappedGRU):
         assert(len(input_shape[0]) == 3)
         B, P, H_ = input_shape[0]
         assert(H_ == H)
-
 
         assert(len(input_shape[1]) == 3)
         B, P_, H_ = input_shape[1]
@@ -28,6 +36,9 @@ class SelfAttnGRU(WrappedGRU):
         self.input_spec = [None] * nb_inputs
 
     def step(self, inputs, states):
+        """
+        Additional operations to be carried out before passing the input to the GRU cell.
+        """
         vP_t = inputs
         hP_tm1 = states[0]
         _ = states[1:3] # ignore internal dropout/masks 
