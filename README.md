@@ -6,7 +6,11 @@ Till 2017, R-NET was the best single model(i.e. comparision on stand-alone model
 SQuAD dataset uses two performance metrics, Exact-Match(EM) and F1-score(F1). Human performance is estimated to be EM = 82.3% and F1 = 91.2% on the test/dev set.
 
 The best performance I got so far was 
-- EM = 57.52% and F1 = 67.42%. (Chances to be further improved as hyperparameter tuning was not carried out)
+- EM = 37.% and F1 = 57.%. 
+
+Reason for such low metrics
+- Chances to be further improved as hyperparameter tuning was not carried out.
+- Trained only for 19 epoch due to huge training time, about 3 hrs on Nvidia K40c
 
 **I have attached a [PDF document](https://github.com/halloTheCoder/RNet-Keras/tree/master/doc.pdf) explaining the model architecture and the current limitations**
 
@@ -35,6 +39,11 @@ python train.py --hdim 45 --batch_size 50 --nb_epochs 50 --optimizer adadelta --
 4. Predict on dev/test set samples
 ```sh
 python predict.py --batch_size 100 --dev_data data/dev_data_str.pkl models/31-t3.05458271443-v3.27696280528.model prediction.json
+```
+
+5. Evaluate on dev/test set samples
+```sh
+python evaluate.py --data/dev-v1.1.json --predfile prediction.json
 ```
 
 Best model can be downloaded from : 

@@ -25,16 +25,17 @@ if __name__ == '__main__':
     valid_cqas = []
 
     for topic in data:
-        cqas = [{'context':      paragraph['context'],
-                'id':           qa['id'],
-                'question':     qa['question'],
-                'answer':       qa['answers'][0]['text'],
-                'answer_start': qa['answers'][0]['answer_start'],
-                'answer_end':   qa['answers'][0]['answer_start'] + \
-                                len(qa['answers'][0]['text']) - 1,
-                'topic':        topic['title'] }
-                for paragraph in topic['paragraphs']
-                for qa in paragraph['qas']]
+        cqas = [{'context' :      paragraph['context'],
+                    'id' :           qa['id'],
+                    'question' :     qa['question'],
+                    'answer' :       ans['text'],
+                    'answer_start' : ans['answer_start'],
+                    'answer_end' :   ans['answer_start'] + len(ans['text']) - 1,
+                    'topic' :        topic['title']
+                } 
+                for paragraph in topic['paragraphs'] 
+                for qa in paragraph['qas'] 
+                for ans in qa['answers']]
 
         if random.random() < args.train_ratio:
             train_cqas += cqas
