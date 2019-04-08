@@ -163,7 +163,6 @@ if __name__ == '__main__':
 
         data = [transpose(input) for input in transpose(samples)]
 
-
         print('Writing to file {}... '.format(args.outfile[i]), end='')
         with open(args.outfile[i], 'wb') as fd:
             pickle.dump(data, fd, protocol=pickle.HIGHEST_PROTOCOL)
