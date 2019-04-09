@@ -5,12 +5,16 @@ This repository is an attempt to reproduce the results presented in the [technic
 Till 2017, R-NET was the best single model(i.e. comparision on stand-alone models, without any ensemble, on the Stanford QA database: SQuAD. 
 SQuAD dataset uses two performance metrics, Exact-Match(EM) and F1-score(F1). Human performance is estimated to be EM = 82.3% and F1 = 91.2% on the test/dev set.
 
+R-NET (March 2017) has one additional BiGRU between the self-matching attention layer and the pointer network and reaches EM=72.3% and F1=80.7% on the test/dev test.
+R-Net at present (on [SQUAD-explorer](https://rajpurkar.github.io/SQuAD-explorer/)) reaches EM=82.136% and F1=88.126%, which means R-NET development continued after March 2017. Also, ensembling the models helped it to reach higher scores.
+
 The best performance I got so far was 
 - EM = 37.% and F1 = 57.%. 
 
 Reason for such low metrics
 - Chances to be further improved as hyperparameter tuning was not carried out.
-- Trained only for 19 epoch due to huge training time, about 3 hrs on Nvidia K40c
+- Trained only for 19 epoch due to huge training time, about 3 hrs on Nvidia K40c.
+- Further technical reasons can be found in blog.
 
 **I have attached a [PDF document](https://github.com/halloTheCoder/RNet-Keras/tree/master/doc.pdf) explaining the model architecture and the current limitations**
 
