@@ -3,13 +3,13 @@
 This repository is an attempt to reproduce the results presented in the [technical report by Microsoft Research Asia](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/05/r-net.pdf). The report describes a complex neural network called **R-NET**.
 
 Till 2017, R-NET was the best single model(i.e. comparision on stand-alone models, without any ensemble, on the Stanford QA database: SQuAD. 
-SQuAD dataset uses two performance metrics, Exact-Match(EM) and F1-score(F1). Human performance is estimated to be EM = 82.3% and F1 = 91.2% on the test/dev set.
+SQuAD dataset uses two performance metrics, **Exact-Match(EM)** and **F1-score(F1)**. Human performance is estimated to be **EM = 82.3%** and **F1 = 91.2%** on the test/dev set.
 
-R-NET (March 2017) has one additional BiGRU between the self-matching attention layer and the pointer network and reaches EM=72.3% and F1=80.7% on the test/dev test.
-R-Net at present (on [SQUAD-explorer](https://rajpurkar.github.io/SQuAD-explorer/)) reaches EM=82.136% and F1=88.126%, which means R-NET development continued after March 2017. Also, ensembling the models helped it to reach higher scores.
+R-NET (March 2017) has one additional BiGRU between the self-matching attention layer and the pointer network and reaches **EM=72.3%** and **F1=80.7%** on the test/dev test.
+R-Net at present (on [SQUAD-explorer](https://rajpurkar.github.io/SQuAD-explorer/)) reaches **EM=82.136%** and **F1=88.126%**, which means R-NET development continued after March 2017. Also, ensembling the models helped it to reach higher scores.
 
 The best performance I got so far was 
-- EM = 37.% and F1 = 57.%. 
+- **EM = 37.%** and **F1 = 57.%**
 
 Reason for such low metrics
 - Chances to be further improved as hyperparameter tuning was not carried out.
