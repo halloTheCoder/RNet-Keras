@@ -42,7 +42,7 @@ python train.py --hdim 45 --batch_size 50 --nb_epochs 50 --optimizer adadelta --
 
 4. Predict on dev/test set samples
 ```sh
-python predict.py --batch_size 100 --dev_data data/dev_data_str.pkl models/31-t3.05458271443-v3.27696280528.model prediction.json
+python predict.py --batch_size 100 --dev_data data/dev_data_str.pkl models/19-t4.210877758771339-v4.457802323046415.model prediction.json
 ```
 
 5. Evaluate on dev/test set samples
