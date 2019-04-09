@@ -9,7 +9,7 @@ R-NET (March 2017) has one additional BiGRU between the self-matching attention 
 R-Net at present (on [SQUAD-explorer](https://rajpurkar.github.io/SQuAD-explorer/)) reaches **EM=82.136%** and **F1=88.126%**, which means R-NET development continued after March 2017. Also, ensembling the models helped it to reach higher scores.
 
 The best performance I got so far was 
-- **EM = 37.%** and **F1 = 57.%**
+- **EM = 38.55** and **F1 = 47.87%**
 
 Reason for such low metrics
 - Chances to be further improved as hyperparameter tuning was not carried out.
