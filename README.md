@@ -50,4 +50,4 @@ python predict.py --batch_size 100 --dev_data data/dev_data_str.pkl models/29-t3
 python evaluate.py --data/dev-v1.1.json --predfile prediction.json
 ```
 
-Best model can be downloaded from : [Model](https://github.com/halloTheCoder/RNet-Keras/blob/master/models/19-t4.210877758771339-v4.457802323046415.model)
+Best model can be downloaded from : [Model](https://github.com/halloTheCoder/RNet-Keras/blob/master/models/29-t3.742772511577511-v4.2209280522167525.model)
