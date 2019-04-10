@@ -9,11 +9,11 @@ R-NET (March 2017) has one additional BiGRU between the self-matching attention 
 R-Net at present (on [SQUAD-explorer](https://rajpurkar.github.io/SQuAD-explorer/)) reaches EM=82.136% and F1=88.126%, which means R-NET development continued after March 2017. Also, ensembling the models helped it to reach higher scores.
 
 The best performance I got so far was 
-- **EM = 38.55** and **F1 = 47.87%**
+- **EM = 42.16** and **F1 = 51.064%**
 
 Reason for such low metrics
 - Chances to be further improved as hyperparameter tuning was not carried out.
-- Trained only for 19 epoch due to huge training time, about 3 hrs on Nvidia K40c.
+- Trained only for 29 epoch due to huge training time, about 3 hrs on Nvidia K40c.
 - Further technical reasons can be found in blog.
 
 **I have attached a [PDF document](https://github.com/halloTheCoder/RNet-Keras/tree/master/QUESTION-ANSWERING ON SQUADv1.pdf) explaining the model architecture and the current limitations**
@@ -42,7 +42,7 @@ python train.py --hdim 45 --batch_size 50 --nb_epochs 50 --optimizer adadelta --
 
 4. Predict on dev/test set samples
 ```sh
-python predict.py --batch_size 100 --dev_data data/dev_data_str.pkl models/19-t4.210877758771339-v4.457802323046415.model prediction.json
+python predict.py --batch_size 100 --dev_data data/dev_data_str.pkl models/29-t3.742772511577511-v4.2209280522167525.model prediction.json
 ```
 
 5. Evaluate on dev/test set samples
