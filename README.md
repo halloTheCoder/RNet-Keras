@@ -16,7 +16,7 @@ Reason for such low metrics
 - Trained only for 29 epoch due to huge training time, about 3 hrs on Nvidia K40c.
 - Further technical reasons can be found in blog.
 
-**I have attached a [PDF document](https://github.com/halloTheCoder/RNet-Keras/tree/master/QUESTION-ANSWERING ON SQUADv1.pdf) explaining the model architecture and the current limitations**
+**I have attached a [PDF document](https://github.com/halloTheCoder/RNet-Keras/blob/master/QUESTION-ANSWERING%20ON%20SQUADv1.pdf) explaining the model architecture and the current limitations**
 
 ## Requirements
 [requirements.txt](https://github.com/halloTheCoder/RNet-Keras/tree/master/requirements.txt)
