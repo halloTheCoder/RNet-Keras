@@ -1,7 +1,7 @@
 keras==2.0.6
 tensorflow==1.13.1
 gensim==3.7.1
-nltk==3.4
+nltk==3.4.5
 scipy==1.15.0
 tqdm
 numpy
